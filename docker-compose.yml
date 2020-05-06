@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  postgres:
+    image: stellirin/postgres-windows
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user
+      - PGDATA=c:\pgdata\data
+    volumes:
+      - c:\Temp\pgsql\data:c:\pgdata\data
+    ports:
+      - "5432:5432"
+    container_name: postgres_win
+# docker run --rm --name postgres_win -e POSTGRES_USER=user -e POSTGRES_PASSWORD=user -e PGDATA=c:\pgdata\data -d -p 5432:5432 -v c:\Temp\pgsql\data:c:\pgdata\data stellirin/postgres-windows

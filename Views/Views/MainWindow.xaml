@@ -1,0 +1,48 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Views.ViewModels;assembly=Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Views.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{Binding Title}">
+
+  <!-- <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>-->
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="0.8*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="0.2*" />
+    </Grid.RowDefinitions>
+
+    <DataGrid Grid.Row="0" Grid.Column="0" Items="{Binding Phones}" SelectedItem="{Binding SelectedPhone, Mode=TwoWay}">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="2*" />
+        <DataGridTextColumn Header="TitleWра апр ithCompany" Width="100" Binding="{Binding TitleWithCompany}"></DataGridTextColumn>
+        <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="2*" />
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <StackPanel Grid.Row="0" Grid.Column="1" DataContext="{Binding SelectedPhone}">
+      <TextBlock Text="Выбранный элемент"  />
+      <TextBlock Text="ID" />
+      <TextBox Text="{Binding Id}" />
+      <TextBlock Text="Модель" />
+      <TextBox Text="{Binding Title}" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+      <Button Width="150" Command="{Binding Refresh}" Content="{Binding CountPhones}"/>
+      <Button Width="150" Command="{Binding Edit}" Content="Edit"/>
+    </StackPanel>
+  </Grid>
+
+
+</Window>
